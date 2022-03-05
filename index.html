@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chart JS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #18191b;
+        }
+        .my-chart {
+            width: 90vw;
+            height: 70vh;
+            padding: 10px;
+            border: 1px solid #3f3f46;
+            border-radius: 0.625rem;
+        }
+        @media screen and (max-width: 768px){
+            .my-chart {
+                width: 90vw;
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="my-chart">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script src="node_modules/chart.js/dist/chart.min.js"></script>
+<script>
+
+    const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+    ];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgba(75, 192, 192, 1)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            data: [2, 10, 5, 2, 20, 30, 45, 50, 60, 21, 33, 44],
+            // barThickness: 20,
+            borderRadius: 10
+        },{
+            label: 'My Second dataset',
+            backgroundColor: 'rgba(255, 159, 64, 1)',
+            borderColor: 'rgba(255, 159, 64, 1)',
+            data: [2, 10, 5, 2, 20, 30, 45, 40, 20, 12, 33, 43],
+            // barThickness: 20,
+            borderRadius: 10,
+        },{
+            type: 'line',
+            label: 'My Third dataset',
+            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+            borderColor: 'rgba(255, 206, 86, 1)',
+            data: [20, 10, 10, 2, 20, 30, 45, 57, 48, 20, 32, 55],
+            // barThickness: 20,
+            borderRadius: 10,
+            fill: true,
+            tension: 0.1,
+            pointStyle: 'line',
+        }]
+    };
+
+    const   config = {
+        type: 'bar',
+        data: data,
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    grid: {
+                        borderColor: 'transparent',
+                        borderDash: [8]
+                    },
+                    ticks: {
+                        stepSize: 20,
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false,
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        usePointStyle: true,
+                    },
+                },
+                title: {
+                    display: true,
+                    text: 'Char JS',
+                    font: {
+                        size: 40
+                    }
+                }
+            }
+        }
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+</script>
+</body>
+</html>
